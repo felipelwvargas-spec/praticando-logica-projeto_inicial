@@ -5,13 +5,21 @@ function sortear() {
     let listaDeNumerosSorteados = [];
     let numero;
     let resultado = document.getElementById('resultado');
-
+    if (de >= ate) {
+    alert('Campo "Do número" deve ser inferior ao campo "Até o número". Verifique!');
+    return;
+    }
+    if (quantidade > (ate - de +1)){
+            alert('Campo "Quantidade" deve ser menor ou igual ao intervalo informado no campo "Do número" até o campo "Até o número". Verifique!');
+            return;
+    }
     // loop
     for (let i = 0; i < quantidade; i++) {
         numero = gerarNumeroAleatorio(de, ate);
 
         while(listaDeNumerosSorteados.includes(numero)){
             numero= gerarNumeroAleatorio (de,ate);
+         //   alert('Tentando obter número inédito');
         }
         listaDeNumerosSorteados.push(numero);
     }
@@ -23,6 +31,7 @@ function sortear() {
     resultado.innerHTML = `<label class="texto__paragrafo">Números sorteados: ${listaDeNumerosSorteados}</label>`;
     alterarStatusBotaoParaAtivo();
     alterarStatusSortearParaInativo();
+    
 
 }
 
