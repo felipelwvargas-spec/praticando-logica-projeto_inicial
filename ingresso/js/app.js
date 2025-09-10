@@ -2,13 +2,19 @@ function comprar() {
     let tipoIngresso = document.getElementById('tipo-ingresso');
     let qtd = parseInt(document.getElementById('qtd').value);
 
-    if (tipoIngresso.value == 'pista') {
-        comprarPista(qtd);
-    } else if (tipoIngresso.value == 'superior') {
-        comprarSuperior(qtd);
+    if (qtd < 1) {
+        alert('Numero precisa ser positivo');
     } else {
-        comprarInferior(qtd);
+        if (tipoIngresso.value == 'pista') {
+            comprarPista(qtd);
+        } else if (tipoIngresso.value == 'superior') {
+            comprarSuperior(qtd);
+        } else {
+            comprarInferior(qtd);
+        }
     }
+
+
 
     //console.log(tipoIngresso);
     //console.log(qtd);
