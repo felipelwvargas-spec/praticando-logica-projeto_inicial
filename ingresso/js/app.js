@@ -1,15 +1,51 @@
-function comprar(){
-    let tipoIngresso = document.getElementById('tipo-ingresso').value
-    let qtd = document.getElementById('qtd').value
-    let qtdPista = document.getElementById('qtd-pista').textContent
-    let qtdSuperior = document.getElementById('qtd-superior').textContent
-    let qtdinferior = document.getElementById('qtd-inferior').textContent
-    
+function comprar() {
+    let tipoIngresso = document.getElementById('tipo-ingresso');
+    let qtd = parseInt(document.getElementById('qtd').value);
 
+    if (tipoIngresso.value == 'pista') {
+        comprarPista(qtd);
+    } else if (tipoIngresso.value == 'superior') {
+        comprarSuperior(qtd);
+    } else {
+        comprarInferior(qtd);
+    }
 
-    console.log(tipoIngresso);
-    console.log(qtd);
-    console.log(qtdPista);
-    console.log(qtdSuperior);
-    console.log(qtdinferior);
+    //console.log(tipoIngresso);
+    //console.log(qtd);
+    //console.log(qtdPista);
+    //console.log(qtdSuperior);
+    // console.log(qtdinferior);
+}
+
+function comprarPista(qtd) {
+    let qtdPista = parseInt(document.getElementById('qtd-pista').textContent);
+    if (qtd > qtdPista) {
+        alert('Quantidade indisponível para tipo pista');
+    } else {
+        qtdPista = qtdPista - qtd;
+        document.getElementById('qtd-pista').textContent = qtdPista;
+        alert('Compra realizada com sucesso!');
+    }
+}
+
+function comprarSuperior(qtd) {
+    let qtdSuperior = parseInt(document.getElementById('qtd-superior').textContent);
+    if (qtd > qtdSuperior) {
+        alert('Quantidade indisponível para tipo Superior');
+    } else {
+        qtdSuperior = qtdSuperior - qtd;
+        document.getElementById('qtd-superior').textContent = qtdSuperior;
+        alert('Compra realizada com sucesso!');
+    }
+}
+
+function comprarInferior(qtd) {
+    let qtdInferior = parseInt(document.getElementById('qtd-inferior').textContent);
+    if (qtd > qtdInferior) {
+        alert('Quantidade indisponível para tipo Inferior');
+    } else {
+        qtdInferior = qtdInferior - qtd;
+        document.getElementById('qtd-inferior').textContent = qtdInferior;
+        alert('Compra realizada com sucesso!');
+    }
 }
