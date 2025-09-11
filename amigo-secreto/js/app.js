@@ -1,40 +1,54 @@
 let amigos = [];
-function adicionar(){
-    let nomeAmigo   = document.getElementById('nome-amigo');
+function adicionar() {
+    let nomeAmigo = document.getElementById('nome-amigo');
+    if (nomeAmigo.value == '') {
+        alert('Informe o nome de um amigo!');
+        return;
+    }
+    if(amigos.includes(nomeAmigo.value)){
+        alert('Nome já informado!');
+        return;
+    }
+
     let listaAmigos = document.getElementById('lista-amigos');
     amigos.push(nomeAmigo.value);
-    if(listaAmigos.textContent == ''){
+    if (listaAmigos.textContent == '') {
         listaAmigos.textContent = nomeAmigo.value;
-    }else{
+    } else {
         listaAmigos.textContent = listaAmigos.textContent + ', ' + nomeAmigo.value;
     }
-    nomeAmigo.value = '';  
+    nomeAmigo.value = '';
     //console.log (nomeAmigo);
     //console.log (listaAmigos);
 }
-function sortear(){
+function sortear() {
+    if(amigos.length < 4){
+        alert ('Adicione pelo menos 4 amigos')
+        return;
+    }
+
     embaralha(amigos);
     let listaSorteio = document.getElementById('lista-sorteio');
-    for(let i = 0; i < amigos.length; i++ ){
-        if(i == amigos.length -1){
+    for (let i = 0; i < amigos.length; i++) {
+        if (i == amigos.length - 1) {
             listaSorteio.innerHTML = listaSorteio.innerHTML + amigos[i] + ' ==> ' + amigos[0] + '<br>'
-        }else{
-         listaSorteio.innerHTML = listaSorteio.innerHTML + amigos[i] + ' ==> ' + amigos[i + 1] + '<br>'
+        } else {
+            listaSorteio.innerHTML = listaSorteio.innerHTML + amigos[i] + ' ==> ' + amigos[i + 1] + '<br>'
         }
     }
 }
 function embaralha(lista) {
-    
+
     for (let indice = lista.length; indice; indice--) {
 
         const indiceAleatorio = Math.floor(Math.random() * indice);
 
         // atribuição via destructuring
-        [lista[indice - 1], lista[indiceAleatorio]] = 
+        [lista[indice - 1], lista[indiceAleatorio]] =
             [lista[indiceAleatorio], lista[indice - 1]];
     }
 }
-function reiniciar(){
+function reiniciar() {
     amigos = [];
     document.getElementById('lista-sorteio').innerHTML = '';
     document.getElementById('lista-amigos').innerHTML = '';
